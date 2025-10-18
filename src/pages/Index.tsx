@@ -37,7 +37,7 @@ const services = [
 const testimonials = [
   {
     name: 'Анна Петрова',
-    text: 'Екатерина — настоящий профессионал! Каждый кадр пропитан эмоциями и атмосферой момента.',
+    text: 'Ульяна — настоящий профессионал! Каждый кадр пропитан эмоциями и атмосферой момента.',
     rating: 5
   },
   {
@@ -87,7 +87,7 @@ const Index = () => {
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <button onClick={() => scrollToSection('home')} className="text-2xl font-serif font-semibold">
-              Екатерина Босунова
+              Ульяна Левкович
             </button>
             <div className="hidden md:flex gap-8">
               {[
@@ -137,7 +137,7 @@ const Index = () => {
             <div className="animate-scale-in">
               <img
                 src="https://cdn.poehali.dev/files/c04c0ba3-e790-428f-800a-89e1a4d212db.jpg"
-                alt="Екатерина Босунова"
+                alt="Ульяна Левкович"
                 className="rounded-lg w-full object-cover aspect-[3/4]"
               />
             </div>
@@ -292,7 +292,7 @@ const Index = () => {
 
       <footer className="py-8 px-6 border-t border-border">
         <div className="container mx-auto text-center text-sm text-muted-foreground">
-          <p>© 2024 Екатерина Босунова. Все права защищены.</p>
+          <p>© 2024 Ульяна Левкович. Все права защищены.</p>
         </div>
       </footer>
     </div>
