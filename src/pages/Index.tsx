@@ -5,11 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import Icon from '@/components/ui/icon';
 
-const portfolioImages = [
-  'https://cdn.poehali.dev/projects/1bb68158-b8a9-4faa-8a33-9c41d2f0fb51/files/122361dd-8ab3-4440-ab75-13f801acd0fb.jpg',
-  'https://cdn.poehali.dev/projects/1bb68158-b8a9-4faa-8a33-9c41d2f0fb51/files/6ddc2900-f3d8-4b80-8676-40cc8dfcd3f6.jpg',
-  'https://cdn.poehali.dev/projects/1bb68158-b8a9-4faa-8a33-9c41d2f0fb51/files/6f639244-0f34-429c-80d8-ef8ab1736043.jpg',
-];
+const portfolioImages: string[] = [];
 
 const services = [
   {
@@ -34,23 +30,7 @@ const services = [
   }
 ];
 
-const testimonials = [
-  {
-    name: 'Анна Петрова',
-    text: 'Ульяна — настоящий профессионал! Каждый кадр пропитан эмоциями и атмосферой момента.',
-    rating: 5
-  },
-  {
-    name: 'Дмитрий Смирнов',
-    text: 'Работать с таким фотографом — удовольствие. Результат превзошёл все ожидания.',
-    rating: 5
-  },
-  {
-    name: 'Мария Козлова',
-    text: 'Спасибо за волшебные фотографии нашей свадьбы. Пересматриваем их снова и снова!',
-    rating: 5
-  }
-];
+const testimonials: Array<{name: string; text: string; rating: number}> = [];
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState('home');
@@ -167,24 +147,31 @@ const Index = () => {
               "В каждой фотографии живёт момент, который больше никогда не повторится"
             </p>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {portfolioImages.map((img, index) => (
-              <div
-                key={index}
-                className="group relative overflow-hidden rounded-lg aspect-[3/4] animate-scale-in"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                <img
-                  src={img}
-                  alt={`Работа ${index + 1}`}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                  <p className="text-foreground font-serif text-lg">Портфолио {index + 1}</p>
+          {portfolioImages.length > 0 ? (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {portfolioImages.map((img, index) => (
+                <div
+                  key={index}
+                  className="group relative overflow-hidden rounded-lg aspect-[3/4] animate-scale-in"
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                >
+                  <img
+                    src={img}
+                    alt={`Работа ${index + 1}`}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                    <p className="text-foreground font-serif text-lg">Портфолио {index + 1}</p>
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-20">
+              <Icon name="Camera" size={64} className="mx-auto mb-6 text-muted-foreground opacity-50" />
+              <p className="text-xl text-muted-foreground">Здесь будут ваши лучшие работы</p>
+            </div>
+          )}
         </div>
       </section>
 
@@ -220,23 +207,30 @@ const Index = () => {
               "Лучшие фотографии — это те, которые вызывают эмоции"
             </p>
           </div>
-          <div className="grid md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <Card
-                key={index}
-                className="p-8 bg-card animate-scale-in"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                <div className="flex gap-1 mb-4">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Icon key={i} name="Star" size={20} className="fill-primary text-primary" />
-                  ))}
-                </div>
-                <p className="text-foreground/90 mb-6 italic">"{testimonial.text}"</p>
-                <p className="font-serif text-lg text-primary">{testimonial.name}</p>
-              </Card>
-            ))}
-          </div>
+          {testimonials.length > 0 ? (
+            <div className="grid md:grid-cols-3 gap-8">
+              {testimonials.map((testimonial, index) => (
+                <Card
+                  key={index}
+                  className="p-8 bg-card animate-scale-in"
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                >
+                  <div className="flex gap-1 mb-4">
+                    {[...Array(testimonial.rating)].map((_, i) => (
+                      <Icon key={i} name="Star" size={20} className="fill-primary text-primary" />
+                    ))}
+                  </div>
+                  <p className="text-foreground/90 mb-6 italic">"{testimonial.text}"</p>
+                  <p className="font-serif text-lg text-primary">{testimonial.name}</p>
+                </Card>
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-20">
+              <Icon name="MessageCircle" size={64} className="mx-auto mb-6 text-muted-foreground opacity-50" />
+              <p className="text-xl text-muted-foreground">Отзывы ваших клиентов появятся здесь</p>
+            </div>
+          )}
         </div>
       </section>
 
